@@ -1,1 +1,1 @@
-# Risc-V Verilog simulation
+# Risc-V CPU Verilog simulation

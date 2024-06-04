@@ -1,0 +1,2 @@
+`define INSTR_SIZE 32
+`define INSTR_SIZE_ZEROS {`INSTR_SIZE{1'b0}}
