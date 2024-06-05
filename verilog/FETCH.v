@@ -25,6 +25,8 @@ assign PC_NEXT = PC_1 + PC_INC;
 
 PC pc(
     .clk(clk),
+    .rst(rst),
+    .entry(entry),
     .PCNext(PC_NEXT), 
     .PCOut(PC)
 );

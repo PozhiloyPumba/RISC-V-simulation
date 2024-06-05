@@ -1,6 +1,0 @@
-module DECODER
-(
-    
-);
-    
-endmodule

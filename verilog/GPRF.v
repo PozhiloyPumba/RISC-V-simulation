@@ -1,25 +1,26 @@
 module GPRF (
     input clk,
-    input [4:0] rn1,
-    input [4:0] rn2,
+    input rst,
+    input [`REG_NUM_SIZE-1:0] rn1,
+    input [`REG_NUM_SIZE-1:0] rn2,
+    input [`REG_NUM_SIZE-1:0] outputReg,
+    input [`REG_SIZE-1:0] WB_data,
     input we,
-    input [4:0] outputReg,
-    input [31:0] data,
 
-    output [31:0] val1,
-    output [31:0] val2
+    output [`REG_SIZE-1:0] D1,
+    output [`REG_SIZE-1:0] D2
 );
 
-reg [31:0] regs [31:0] /*verilator public*/; // for dump trace
+reg [(1 << `REG_NUM_SIZE)-1:0] regs [`REG_SIZE-1:0] /*verilator public*/; // for dump trace
 
 // read registers
-assign val1 = (rn1 == 0) ? 0 : registers[rn1];
-assign val2 = (rn2 == 0) ? 0 : registers[rn2];
+assign D1 = (rn1 == 0) || rst ? {`INSTR_SIZE{1'b0}} : regs[rn1];
+assign D2 = (rn2 == 0) || rst ? {`INSTR_SIZE{1'b0}} : regs[rn2];
 
-// write to register wn
+// write to register
 always @(negedge clk) begin
-    if(we && wn != 0) begin
-        registers[outputReg] <= data;
+    if(we) begin
+        regs[outputReg] <= WB_data;
     end
 end
 

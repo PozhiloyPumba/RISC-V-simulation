@@ -1,15 +1,9 @@
-int summ(int n) {
-    int res = 1;
-    for(int i = 2; i <= n; i++) {
+int main() {
+    int n = 1231;
+    int res = 0;
+    for(int i = 1; i <= n; i++) {
         res = res + i;
     }
-    return res;
-}
-
-int main() {
-    int n = 0xFFF;
-    int res = summ(n);
-
-    asm("ecall");
+    // asm("ecall");
     return res;
 }

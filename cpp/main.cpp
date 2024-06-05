@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
     }
 
     vluint64_t vtime = 0;
-    int clock = 0;
+    int clock = 1;
     top_module->clk = 1;
     top_module->rst = 0;
     
@@ -76,8 +76,7 @@ int main(int argc, char *argv[]) {
         if (vtime % 8 == 0) {
             // switch the clock
             clock ^= 1;
-            tackt += clock;        
-            top_module->rst = 0;
+            tackt += clock;
         }
         if (vtime == 1000) {
             break;
